@@ -1,0 +1,26 @@
+- model: auth.User
+  pk: 2
+  fields:
+    username: juan.perez
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: juan.perez@example.com
+    first_name: Juan
+    last_name: Perez
+- model: auth.User
+  pk: 3
+  fields:
+    username: luiz.gonzalez
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: luiz.gonzalez@example.com
+    first_name: Luis
+    last_name: Gonzalez
+- model: core.Client
+  pk: 1
+  fields:
+    user: 2
+    created: 2015-06-16 00:00:00
+- model: core.Owner
+  pk: 1
+  fields:
+    user: 3
+    created: 2015-06-16 00:00:00

@@ -1,0 +1,46 @@
+- model: core.History
+  pk: 1
+  fields:
+    client: 1
+    name: Asia - 2015
+    sumary: Viaje por Asia oriental en el programa hackerparadise.org
+    created: 2015-06-16 00:00:00
+- model: core.History
+  pk: 2
+  fields:
+    client: 1
+    name: Africa - 2015
+    sumary: Travesia por africa central
+    created: 2015-06-16 00:00:00
+- model: core.Event
+  pk: 1
+  fields:
+    history: 1
+    place: 1
+    created: 2015-06-16 00:00:00
+    start: 2015-06-17
+    end: 2015-06-19
+- model: core.Event
+  pk: 2
+  fields:
+    history: 1
+    place: 2
+    created: 2015-06-16 00:00:00
+    start: 2015-06-21
+    end: 2015-06-28
+- model: core.Event
+  pk: 3
+  fields:
+    history: 1
+    place: 1
+    created: 2015-06-16 00:00:00
+    start: 2015-07-01
+    end: 2015-07-05
+- model: core.Event
+  pk: 4
+  fields:
+    history: 2
+    place: 2
+    created: 2015-06-16 00:00:00
+    start: 2015-06-15
+    end: 2015-06-20

@@ -1,0 +1,61 @@
+- model: core.Option
+  pk: 1
+  fields:
+    name: Wifi
+    icon: wifi.png
+    icon: Conexión a internet
+- model: core.Option
+  pk: 2
+  fields:
+    name: Mesas de trabajo
+    icon: desk.png
+    icon: Mesas de trabajo
+- model: core.Option
+  pk: 3
+  fields:
+    name: Standing Desk
+    icon: standing-desk.png
+    icon: Mesas de trabajo para trabajar de pie
+- model: core.Place
+  pk: 1
+  fields:
+    owner: 1
+    name: Runway
+    price_base: 15
+    currency: USD
+    location: San Francisco
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 2
+  fields:
+    owner: 1
+    name: Hubud
+    price_base: 12
+    currency: USD
+    location: Ubud - Bali
+    created: 2015-06-16 00:00:00
+- model: core.OptionsPlace
+  pk: 1
+  fields:
+    place: 1
+    option: 1
+- model: core.OptionsPlace
+  pk: 2
+  fields:
+    place: 1
+    option: 2
+- model: core.OptionsPlace
+  pk: 3
+  fields:
+    place: 1
+    option: 3
+- model: core.OptionsPlace
+  pk: 4
+  fields:
+    place: 2
+    option: 1
+- model: core.OptionsPlace
+  pk: 5
+  fields:
+    place: 2
+    option: 2

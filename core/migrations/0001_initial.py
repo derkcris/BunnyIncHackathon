@@ -47,8 +47,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
+                ('sumary', models.TextField()),
                 ('created', models.DateTimeField()),
-                ('client', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('client', models.ForeignKey(to='core.Client')),
             ],
         ),
         migrations.CreateModel(

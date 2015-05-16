@@ -7,7 +7,7 @@ class Client(models.Model):
     created = models.DateTimeField()
 
     def __str__(self):
-    	return self.user.username
+    	return self.user.first_name + ' ' + self.user.last_name
 
 
 class Owner(models.Model):
@@ -15,7 +15,7 @@ class Owner(models.Model):
     created = models.DateTimeField()
 
     def __str__(self):
-    	return self.user.username
+    	return self.user.first_name + ' ' + self.user.last_name
 
 
 class Option(models.Model):
@@ -61,8 +61,9 @@ class Card(models.Model):
 
 
 class History(models.Model):
-    client = models.ForeignKey(User)
+    client = models.ForeignKey(Client)
     name = models.CharField(max_length=100)
+    sumary = models.TextField()
     created = models.DateTimeField()
 
     def __str__(self):
