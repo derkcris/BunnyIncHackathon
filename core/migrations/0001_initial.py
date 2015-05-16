@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -20,6 +22,15 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField()),
                 ('type', models.CharField(max_length=50)),
                 ('content', models.TextField()),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Client',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', models.DateTimeField()),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -37,6 +48,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('created', models.DateTimeField()),
+                ('client', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -56,6 +68,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Owner',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', models.DateTimeField()),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Place',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -64,31 +84,13 @@ class Migration(migrations.Migration):
                 ('currency', models.CharField(max_length=5)),
                 ('location', models.CharField(max_length=50)),
                 ('created', models.DateTimeField()),
+                ('owner', models.ForeignKey(to='core.Owner')),
             ],
-        ),
-        migrations.CreateModel(
-            name='User',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('admin', models.BooleanField()),
-                ('owner', models.BooleanField()),
-                ('client', models.BooleanField()),
-            ],
-        ),
-        migrations.AddField(
-            model_name='place',
-            name='user',
-            field=models.ForeignKey(to='core.User'),
         ),
         migrations.AddField(
             model_name='optionsplace',
             name='place',
             field=models.ForeignKey(to='core.Place'),
-        ),
-        migrations.AddField(
-            model_name='history',
-            name='user',
-            field=models.ForeignKey(to='core.User'),
         ),
         migrations.AddField(
             model_name='event',
@@ -99,10 +101,5 @@ class Migration(migrations.Migration):
             model_name='event',
             name='place',
             field=models.ForeignKey(to='core.Place'),
-        ),
-        migrations.AddField(
-            model_name='card',
-            name='user',
-            field=models.ForeignKey(to='core.User'),
         ),
     ]

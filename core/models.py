@@ -1,13 +1,21 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    admin = models.BooleanField()
-    owner = models.BooleanField()
-    client = models.BooleanField()
+class Client(models.Model):
+    user = models.OneToOneField(User)
+    created = models.DateTimeField()
 
     def __str__(self):
-    	return self.user.first_name + ' ' + self.user.last_name
+    	return self.user.username
+
+
+class Owner(models.Model):
+    user = models.OneToOneField(User)
+    created = models.DateTimeField()
+
+    def __str__(self):
+    	return self.user.username
 
 
 class Option(models.Model):
@@ -20,7 +28,7 @@ class Option(models.Model):
 
 
 class Place(models.Model):
-    user = models.ForeignKey(User)
+    owner = models.ForeignKey(Owner)
     name = models.CharField(max_length=200)
     price_base = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=5)
@@ -53,7 +61,7 @@ class Card(models.Model):
 
 
 class History(models.Model):
-    user = models.ForeignKey(User)
+    client = models.ForeignKey(User)
     name = models.CharField(max_length=100)
     created = models.DateTimeField()
 
