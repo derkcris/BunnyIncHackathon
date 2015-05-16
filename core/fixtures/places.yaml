@@ -1,0 +1,178 @@
+- model: core.Option
+  pk: 1
+  fields:
+    name: Wifi
+    icon: wifi.png
+    description: Conexión a internet
+- model: core.Option
+  pk: 2
+  fields:
+    name: Mesas de trabajo
+    icon: desk.png
+    description: Mesas de trabajo
+- model: core.Option
+  pk: 3
+  fields:
+    name: Standing Desk
+    icon: standing-desk.png
+    description: Mesas de trabajo para trabajar de pie
+- model: core.Option
+  pk: 4
+  fields:
+    name: Oficina de reuniones
+    icon: oficina.png
+    description: Espacio para reunirse de 6 a 10 personas
+- model: core.Option
+  pk: 5
+  fields:
+    name: Puff
+    icon: oficina.png
+    description: Sillas acolchonadas
+- model: core.Place
+  pk: 1
+  fields:
+    owner: 1
+    name: Runway
+    price_base: 15
+    currency: USD
+    location: San Francisco - California
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 2
+  fields:
+    owner: 1
+    name: Google coworking space
+    price_base: 24
+    currency: USD
+    location: Palo Alto - California
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 3
+  fields:
+    owner: 1
+    name: Twitter coworking space
+    price_base: 17
+    currency: USD
+    location: San Francisco - California
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 4
+  fields:
+    owner: 1
+    name: Hubud
+    price_base: 12
+    currency: USD
+    location: Ubud - Bali - Indonesia
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 5
+  fields:
+    owner: 2
+    name: Hubbog
+    price_base: 7
+    currency: USD
+    location: Bogota - Colombia
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 6
+  fields:
+    owner: 2
+    name: ViveLab
+    price_base: 5
+    currency: USD
+    location: Bogota - Colombia
+    created: 2015-06-16 00:00:00
+- model: core.Place
+  pk: 7
+  fields:
+    owner: 2
+    name: Atom House
+    price_base: 8
+    currency: USD
+    location: Bogota - Colombia
+    created: 2015-06-16 00:00:00
+- model: core.OptionPlace
+  pk: 1
+  fields:
+    place: 1
+    option: 1
+- model: core.OptionPlace
+  pk: 2
+  fields:
+    place: 1
+    option: 2
+- model: core.OptionPlace
+  pk: 3
+  fields:
+    place: 1
+    option: 3
+- model: core.OptionPlace
+  pk: 4
+  fields:
+    place: 1
+    option: 4
+- model: core.OptionPlace
+  pk: 5
+  fields:
+    place: 1
+    option: 5
+- model: core.OptionPlace
+  pk: 6
+  fields:
+    place: 2
+    option: 1
+- model: core.OptionPlace
+  pk: 7
+  fields:
+    place: 2
+    option: 2
+- model: core.OptionPlace
+  pk: 8
+  fields:
+    place: 2
+    option: 4
+- model: core.OptionPlace
+  pk: 9
+  fields:
+    place: 3
+    option: 1
+- model: core.OptionPlace
+  pk: 10
+  fields:
+    place: 3
+    option: 2
+- model: core.OptionPlace
+  pk: 11
+  fields:
+    place: 3
+    option: 3
+- model: core.OptionPlace
+  pk: 12
+  fields:
+    place: 3
+    option: 4
+- model: core.OptionPlace
+  pk: 13
+  fields:
+    place: 3
+    option: 5
+- model: core.OptionPlace
+  pk: 14
+  fields:
+    place: 4
+    option: 1
+- model: core.OptionPlace
+  pk: 15
+  fields:
+    place: 4
+    option: 2
+- model: core.OptionPlace
+  pk: 16
+  fields:
+    place: 4
+    option: 5
+- model: core.OptionPlace
+  pk: 17
+  fields:
+    place: 5
+    option: 1

@@ -1,0 +1,78 @@
+{% extends "template/base.html" %}
+
+{% block title %}
+	Find inspiration
+{% endblock %}
+
+{% block container %}
+<form action="{% url 'story:search' %}" method="get">
+	<div class="row">
+	 	<div class="col-md-offset-2 col-md-8">
+	    	<div class="input-group input-group-lg">
+		    	<input type="text" name="q" id="q" value="{{ q }}" class="form-control" placeholder="Search for..."/>
+		    	<span class="input-group-btn">
+					<button class="btn btn-primary" type="submit">Search</button>
+				</span>
+			</div><!-- /input-group -->
+	  	</div><!-- /.col-md-4 -->
+	</div><!-- /.row -->
+</form>
+<br>
+{% if stories %}
+	{% for story in stories %}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ story.start.day }}</span>
+									<p class="small">{{ story.start | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4 text-center">
+								<span class="lead">{{ story.name }}</span>
+								<p class="small">
+									A story by <a href="/user/{{ story.client.id }}">{{ story.client }}</a>
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ story.end.day }}</span>
+									<p class="small">{{ story.end | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<strong>Places: </strong>
+										{% for event in story.event_set.all %}
+											<a href="/story/search/?q={{ event.place.name }}">{{ event.place.name }}</a>
+											(<i><a href="/story/search/?q={{ event.place.location }}">{{ event.place.location }}</a></i>)
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 text-center">
+								<a class="btn btn-success" href="/story/{{ story.id }}" role="button">View more</a>
+							</div>
+						</div>
+  					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+{% if q and not stories %}
+	<div class="alert" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		No results
+	</div>
+{% endif %}
+
+Filters: {{ filters }}
+<br>
+Query: {{ query }}
+
+{% endblock %}

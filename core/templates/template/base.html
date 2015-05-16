@@ -1,0 +1,128 @@
+<!doctype html ng-app>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+
+        <script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="/static/js/vendor/jquery-1.11.2.min.js"></script>
+    </head>
+    <body class="{% block body_classes %}{% endblock %}">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        {% block app_name %}Digital nomads{% endblock %}
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <div class="navbar-form navbar-right">
+                        <a class="btn btn-default" href="/story/search" role="button">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            Search
+                        </a>
+                        {% if user %}
+                            <a class="btn btn-default" href="/dashboard" role="button">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                Dashboard
+                            </a>
+                        {% endif %}
+                        {% if shopping_cart %}
+                            <div class="btn-group">
+                                <a class="btn btn-success" href="/story/checkout" role="button">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                    Checkout <span class="badge dn-cart-length">{{ shopping_cart | length }}</span>
+                                </a>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    {% if user %}
+                                        <li><a href="/user/logout">Logout</a></li>
+                                    {% else %}
+                                        <li><a href="/user/register">Register</a></li>
+                                        <li><a href="/user/login">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% else %}
+                            {% if user %}
+                                <a class="btn btn-success" href="/user/logout" role="button">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                    Logout
+                                </a>
+                            {% else %}
+                                <div class="btn-group">
+                                    <a class="btn btn-success" href="/user/register" role="button">
+                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                        Register
+                                    </a>
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/user/login">Login</a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>{% block title %}Title{% endblock %}</h1>
+                {% block title_section %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="container body-container">
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>{{ error_message }}
+            </div>
+            {% endif %}
+            {% block container %}
+            {% endblock %}
+            <hr>
+            <footer>
+                <p>&copy; Company 2015</p>
+            </footer>
+        </div><!-- /container -->
+        <script src="/static/js/vendor/bootstrap.min.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
