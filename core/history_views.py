@@ -1,9 +1,10 @@
 import operator
+from datetime import datetime, timedelta
 from itertools import chain
 from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 from . import views
 from core.models import Option, Place, OptionPlace, Card, History, Event
@@ -57,6 +58,41 @@ def view(request, history_id):
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
 	return render(request, 'history/view.html', context)
+
+def checkout(request):
+	cart = []
+	if settings.SHOPPING_CART_KEY in request.session:
+		cart = request.session[settings.SHOPPING_CART_KEY]
+		i = 0
+		for event in cart:
+			place = Place.objects.get(pk=event['place'])
+			event['index'] = i
+			event['days'] = int(event['days'])
+			event['start'] = date_object = datetime.strptime(event['start'], '%m/%d/%Y') # 12/31/2015
+			event['end'] = event['start'] + timedelta(days=event['days'])
+			event['place_name'] = place.name
+			event['location'] = place.location
+			event['price_base'] = float(place.price_base)
+			event['price'] = place.price() * event['days']
+			event['currency'] = place.currency
+			i = i+1
+	context = {
+		'cart'			: cart,
+		'user'			: views.user_status(request),
+		'shopping_cart'	: views.shopping_cart_status(request)
+	}
+	return render(request, 'history/checkout.html', context)
+
+
+def checkout_remove(request, index):
+	if settings.SHOPPING_CART_KEY in request.session:
+		cart = request.session[settings.SHOPPING_CART_KEY]
+		index = int(index)
+		cart.remove( cart[index] )
+		request.session[settings.SHOPPING_CART_KEY] = cart
+
+	return redirect('/history/checkout')
+
 
 def ajax_add_place(request):
 	context = {}

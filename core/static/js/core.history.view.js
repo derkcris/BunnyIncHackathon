@@ -8,6 +8,11 @@ function showModalHandler(event){
 	$('.dn-base-price').val( $(event.target).data('place-price') );
 	$('.dn-event-price').val( $(event.target).data('place-price') );
 	$('.dn-event-days').val( 1 );
+
+	$('.dn-form-container').removeClass('hide');
+	$('.dn-form-submit').removeClass('hide');
+	$('.dn-success').addClass('hide');
+
 	$('#dn-add-place-modal').modal();
 }
 
@@ -24,7 +29,6 @@ function beforeSend(){
 }
 
 function success(data){
-	console.log(data); // TODO remove
 	if(data['status'] && data['status'] == 'success'){
 		$('.dn-form-container').addClass('hide');
 		$('.dn-form-submit').addClass('hide');
@@ -39,7 +43,6 @@ function error(){
 }
 
 function submitHandler(event){
-	console.log('submitHandler'); // TODO remove
 	event.preventDefault();
 	if($('.dn-event-start').val() == ''){
 		return false;

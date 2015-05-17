@@ -44,13 +44,21 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <div class="navbar-form navbar-right">
                         {% if user %}
+                            <a class="btn btn-default" href="/history/search" role="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                Search
+                            </a>
                             <a class="btn btn-default" href="/dashboard" role="button">
-                                {{ user.email }}
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                Dashboard
                             </a>
                         {% endif %}
                         {% if shopping_cart %}
                             <div class="btn-group">
-                                <a class="btn btn-success" href="/history/checkout">Checkout ({{ shopping_cart | length }})</a>
+                                <a class="btn btn-success" href="/history/checkout" role="button">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                    Checkout <span class="badge">{{ shopping_cart | length }}</span>
+                                </a>
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
@@ -66,10 +74,16 @@
                             </div>
                         {% else %}
                             {% if user %}
-                                <a class="btn btn-success" href="/user/logout">Logout</a>
+                                <a class="btn btn-success" href="/user/logout" role="button">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                    Logout
+                                </a>
                             {% else %}
                                 <div class="btn-group">
-                                    <a class="btn btn-success" href="/user/register">Register</a>
+                                    <a class="btn btn-success" href="/user/register" role="button">
+                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                        Register
+                                    </a>
                                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <span class="caret"></span>
                                         <span class="sr-only">Toggle Dropdown</span>
