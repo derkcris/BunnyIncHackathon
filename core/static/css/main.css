@@ -4,19 +4,33 @@
    Author's custom styles
    ========================================================================== */
 
+.home .jumbotron{
+	background: url('/static/img/home_background3.jpg') no-repeat ;
+	background-size: cover;
+}
 
+.home .hero {
+	color: white;
+	text-shadow: 4px 5px 15px black;
+	padding-top: 150px;
+	padding-bottom: 200px;
+}
 
+.home .body-container{
+}
 
+.home .body-container h1{
+	padding-top: 25px;
+	padding-bottom: 25px;
+	text-align: center;
+	border-bottom: 1px solid #D5D5D5;
+}
 
+.home .body-container h1,
+.home .body-container h2{
+	font-weight: 300;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.home .home-block{
+	margin: 50px 0 100px;
+}

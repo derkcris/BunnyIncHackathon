@@ -85,8 +85,8 @@ def generateContent(type):
 	if type == 'text':
 		return '<ul><li>Golden Gate Park</li><li>Embarcadero</li><li>Chocolate store</li></ul>'
 	if type == 'facebook':
-		return '<iframe src="https://www.facebook.com/events/284573811666556/"></iframe>'
+		return '<img src="http://img.svbtle.com/pugis6oroxzxcg.png" width="100%">'
 	if type == 'instagram':
 		return '<img src="https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-15/11256822_1418709128449920_1504567737_n.jpg" width="100%">'
-	if type == 'facebook':
-		return '<img src="http://img.svbtle.com/pugis6oroxzxcg.png" width="100%">'
+	if type == 'map':
+		return '<img src="http://mike.teczno.com/img/google-maps-track.png" width="100%">'

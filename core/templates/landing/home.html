@@ -1,5 +1,62 @@
 {% extends "template/base.html" %}
 
+{% block body_classes %}
+	home
+{% endblock %}
+
 {% block title %}
-	Welcome to Ditital nomads
+{% endblock %}
+
+{% block title_section %}
+	<div class="hero">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<h1>Find great travel+work stories, live your own and inspire others</h1>
+				<br/>
+				<form action="{% url 'story:search' %}" method="get">
+					<div class="input-group input-group-lg">
+						<input type="text" name="q" class="form-control" placeholder="Where are you going?">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="submit">Search</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block container %}
+	<h1>How its works?</h1>
+	<div class="home-block"></div>
+	<div class="row">
+		<div class="col-md-6 text-right">
+			<h2>Find inspiration</h2>
+		</div>
+		<div class="col-md-6">
+          	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		</div>
+	</div>
+	<div class="home-block"></div>
+	<div class="row">
+		<div class="col-md-6 text-right">
+          	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		</div>
+		<div class="col-md-6">
+			<h2>Plan your trip</h2>
+		</div>
+	</div>
+	<div class="home-block"></div>
+	<div class="row">
+		<div class="col-md-6 text-right">
+			<h2>Live and tell</h2>
+		</div>
+		<div class="col-md-6">
+          	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		</div>
+	</div>
 {% endblock %}
