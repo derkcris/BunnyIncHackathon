@@ -34,6 +34,7 @@ function success(data){
 		$('.dn-form-container').addClass('hide');
 		$('.dn-form-submit').addClass('hide');
 		$('.dn-success').removeClass('hide');
+		$('.dn-cart-length').html(data['length'])
 	} else {
 		error();
 	}

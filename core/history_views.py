@@ -41,6 +41,7 @@ def search(request):
 		histories = []
 		filters = []
 		query_log = ''
+
 	context = {
 		'q'				: q,
 		'histories'		: histories,
@@ -112,6 +113,7 @@ def checkout(request):
 			ev['index'] = i
 			ev = complete_event(ev, place)
 			i = i+1
+
 	context = {
 		'name'			: name,
 		'sumary'		: sumary,
@@ -121,6 +123,7 @@ def checkout(request):
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
 	return render(request, 'history/checkout.html', context)
+
 
 def complete_event(ev, place):
 	ev['days'] = int(ev['days'])
@@ -132,6 +135,7 @@ def complete_event(ev, place):
 	ev['price'] = place.price() * ev['days']
 	ev['currency'] = place.currency
 	return ev
+
 
 @login_required
 def checkout_remove(request, index):
@@ -160,7 +164,7 @@ def ajax_add_place(request):
 		cart.append(event)
 		request.session[settings.SHOPPING_CART_KEY] = cart
 		context['status'] = 'success'
-		context['cart'] = cart # TODO remove
+		context['length'] = len(cart) # TODO remove
 
 	return JsonResponse(context)
 
