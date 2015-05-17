@@ -15,12 +15,12 @@ def search(request):
 	q = request.GET.get('q', '')
 	if q:
 		filters = q.lower().split(' ')
-		# Histories
+		# Stories
 		query = reduce(operator.or_, (
 			Q(name__icontains = f) | Q(sumary__icontains = f) for f in filters)
 		)
 		query_log = str(query)
-		histories = Story.objects.filter(query).order_by('-created')
+		stories = Story.objects.filter(query).order_by('-created')
 
 		# Places
 		query = reduce(operator.or_, (
@@ -29,21 +29,21 @@ def search(request):
 		query_log += ' - ' + str(query)
 		places = Place.objects.filter(query).order_by('-created')
 
-		# Add place results to histories
-		histories = list(chain(histories))
+		# Add place results to stories
+		stories = list(chain(stories))
 		for place in places:
-			place_histories = list(chain(place.histories()))
-			for h in place_histories:
-				if h not in histories:
-					histories.append(h)
+			place_stories = list(chain(place.stories()))
+			for h in place_stories:
+				if h not in stories:
+					stories.append(h)
 	else:
-		histories = []
+		stories = []
 		filters = []
 		query_log = ''
 
 	context = {
 		'q'				: q,
-		'histories'		: histories,
+		'stories'		: stories,
 		'filters'		: filters,
 		'query'			: query_log,
 		'user'			: views.user_status(request),
