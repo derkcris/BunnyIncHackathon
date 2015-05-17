@@ -67,6 +67,8 @@ def checkout(request):
 	name = ''
 	sumary = ''
 	error_message = False
+	total = 0
+	currency = 'USD'
 	cart = []
 	if request.POST:
 		name = request.POST['name']
@@ -112,11 +114,14 @@ def checkout(request):
 			place = Place.objects.get(pk=ev['place'])
 			ev['index'] = i
 			ev = complete_event(ev, place)
+			total += ev['price']
 			i = i+1
 
 	context = {
 		'name'			: name,
 		'sumary'		: sumary,
+		'total'			: total,
+		'currency'		: currency,
 		'cart'			: cart,
 		'error_message'	: error_message,
 		'user'			: views.user_status(request),
