@@ -9,9 +9,9 @@
 - model: auth.User
   pk: 3
   fields:
-    username: luiz.gonzalez
+    username: luis.gonzalez
     password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
-    email: luiz.gonzalez@example.com
+    email: luis.gonzalez@example.com
     first_name: Luis
     last_name: Gonzalez
 - model: core.Client

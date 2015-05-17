@@ -41,7 +41,13 @@
 							<div class="col-md-2 text-center">
 								<span class="small">{{ event.place.currency }}</span>
 								<span class="lead">{{ event.place.price }}</span>
-								<a class="btn btn-success" href="#" role="button">Book this place</a>
+								<a class="btn btn-success" href="#" role="button">
+									{% if user and user.id = history.client.user.id %}
+										Book again this place
+									{% else %}
+										Book this place
+									{% endif %}
+								</a>
 							</div>
 						</div>
 					</div>
