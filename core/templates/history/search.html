@@ -1,6 +1,8 @@
 {% extends "template/base.html" %}
 
-{% block title %}Search a history{% endblock %}
+{% block title %}
+	Search a history
+{% endblock %}
 
 {% block container %}
 <form action="{% url 'history:search' %}" method="get">
