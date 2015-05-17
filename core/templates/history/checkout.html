@@ -12,7 +12,7 @@
 				<div class="panel-heading">Checkout of {{ cart | length }} items</div>
 				<div class="panel-body">
 					<div class="row">
-						<form action="{% url 'user:login' %}" method="post" class="form-horizontal">
+						<form action="{% url 'history:checkout' %}" method="post" class="form-horizontal">
 							{% csrf_token %}
 							<div class="form-group">
 							    <label for="name" class="col-sm-2 control-label">Name of history</label>

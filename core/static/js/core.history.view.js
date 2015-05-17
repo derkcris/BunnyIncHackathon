@@ -12,6 +12,7 @@ function showModalHandler(event){
 	$('.dn-form-container').removeClass('hide');
 	$('.dn-form-submit').removeClass('hide');
 	$('.dn-success').addClass('hide');
+	$('.dn-form-submit').removeAttr('disabled');
 
 	$('#dn-add-place-modal').modal();
 }
