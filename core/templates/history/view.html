@@ -1,0 +1,59 @@
+{% extends "template/base.html" %}
+
+{% block title %}
+	{{ history.name }}
+{% endblock %}
+
+{% block title_section %}
+	<span>By <a href="/user/{{ history.client.id }}">{{ history.client }}</a></span>
+{% endblock %}
+
+{% block container %}
+	{% for event in history.event_set.all %}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ event.start.day }}</span>
+									<p class="small">{{ event.start | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4 text-center">
+								<span class="lead">{{ event.place.name }}</span>
+								<p class="small">
+									<a href="/history/search?q={{ event.place.location }}">{{ event.place.location }}</a>
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ event.end.day }}</span>
+									<p class="small">{{ event.end | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								{% for option_place in event.place.optionplace_set.all %}
+									<code>{{ option_place.option.name }}</code>
+								{% endfor %}
+							</div>
+							<div class="col-md-2 text-center">
+								<span class="small">{{ event.place.currency }}</span>
+								<span class="lead">{{ event.place.price }}</span>
+								<a class="btn btn-success" href="#" role="button">Book this place</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<blockquote class="blockquote-reverse">
+		<p>
+			<b>{{ history.name }} : </b>
+			<i>{{ history.sumary }}</i>
+		</p>
+		<footer>By <a href="/user/{{ history.client.id }}">{{ history.client }}</a></footer>
+	</blockquote>
+{% endblock %}

@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='OptionsPlace',
+            name='OptionPlace',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('option', models.ForeignKey(to='core.Option')),
@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='optionsplace',
+            model_name='optionplace',
             name='place',
             field=models.ForeignKey(to='core.Place'),
         ),

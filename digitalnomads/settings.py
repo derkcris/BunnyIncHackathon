@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Constants
+SERVICE_FEE = 0.20
 
 # Application definition
 

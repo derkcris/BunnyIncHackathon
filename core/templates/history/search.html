@@ -31,6 +31,9 @@
 							</div>
 							<div class="col-md-4 text-center">
 								<span class="lead">{{ history.name }}</span>
+								<p class="small">
+									<a href="/user/{{ history.client.id }}">{{ history.client }}</a>
+								</p>
 							</div>
 							<div class="col-md-1 text-center">
 								<div class="text-primary">
@@ -39,17 +42,18 @@
 								</div>
 							</div>
 							<div class="col-md-4">
-								{% for event in history.event_set.all %}
-									<div class="panel panel-default">
-										<div class="panel-body">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<strong>Places: </strong>
+										{% for event in history.event_set.all %}
 											<a href="/history/search/?q={{ event.place.name }}">{{ event.place.name }}</a>
 											(<i><a href="/history/search/?q={{ event.place.location }}">{{ event.place.location }}</a></i>)
-										</div>
+										{% endfor %}
 									</div>
-								{% endfor %}
+								</div>
 							</div>
-							<div class="col-md-2">
-								<a class="btn btn-default" href="#" role="button">View more</a>
+							<div class="col-md-2 text-center">
+								<a class="btn btn-success" href="/history/{{ history.id }}" role="button">View more</a>
 							</div>
 						</div>
   					</div>

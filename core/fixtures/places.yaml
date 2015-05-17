@@ -3,19 +3,19 @@
   fields:
     name: Wifi
     icon: wifi.png
-    icon: Conexión a internet
+    description: Conexión a internet
 - model: core.Option
   pk: 2
   fields:
     name: Mesas de trabajo
     icon: desk.png
-    icon: Mesas de trabajo
+    description: Mesas de trabajo
 - model: core.Option
   pk: 3
   fields:
     name: Standing Desk
     icon: standing-desk.png
-    icon: Mesas de trabajo para trabajar de pie
+    description: Mesas de trabajo para trabajar de pie
 - model: core.Place
   pk: 1
   fields:
@@ -34,27 +34,27 @@
     currency: USD
     location: Ubud - Bali
     created: 2015-06-16 00:00:00
-- model: core.OptionsPlace
+- model: core.OptionPlace
   pk: 1
   fields:
     place: 1
     option: 1
-- model: core.OptionsPlace
+- model: core.OptionPlace
   pk: 2
   fields:
     place: 1
     option: 2
-- model: core.OptionsPlace
+- model: core.OptionPlace
   pk: 3
   fields:
     place: 1
     option: 3
-- model: core.OptionsPlace
+- model: core.OptionPlace
   pk: 4
   fields:
     place: 2
     option: 1
-- model: core.OptionsPlace
+- model: core.OptionPlace
   pk: 5
   fields:
     place: 2

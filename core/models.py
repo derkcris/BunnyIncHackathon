@@ -1,6 +1,6 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
-
 
 class Client(models.Model):
     user = models.OneToOneField(User)
@@ -38,16 +38,19 @@ class Place(models.Model):
     def histories(self):
     	return History.objects.filter(event__place__id = self.id)
 
+    def price(self):
+    	return float(self.price_base) + float(self.price_base) * settings.SERVICE_FEE
+
     def __str__(self):
     	return self.name
 
 
-class OptionsPlace(models.Model):
+class OptionPlace(models.Model):
     place = models.ForeignKey(Place)
     option = models.ForeignKey(Option)
 
     def __str__(self):
-    	return self.place + ' - ' + self.option
+    	return str(self.place) + ' - ' + str(self.option)
 
 
 class Card(models.Model):

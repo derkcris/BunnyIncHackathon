@@ -4,13 +4,14 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
-from core.models import Client, Owner, Option, Place, OptionsPlace, Card, History, Event
+from core.models import Client, Owner, Option, Place, OptionPlace, Card, History, Event
 
 def index(request):
 	context = {}
 	return render(request, 'landing/home.html', context)
 
-def search(request):
+
+def history_search(request):
 	q = request.GET.get('q', '')
 	if q:
 		filters = q.lower().split(' ')
@@ -45,4 +46,12 @@ def search(request):
 		'filters'	: filters,
 		'query'		: query_log
 	}
-	return render(request, 'landing/search.html', context)
+	return render(request, 'history/search.html', context)
+
+
+def history_view(request, history_id):
+	history = get_object_or_404(History, pk=history_id)
+	context = {
+		'history' : history
+	}
+	return render(request, 'history/view.html', context)
