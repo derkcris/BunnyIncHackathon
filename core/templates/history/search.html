@@ -5,14 +5,14 @@
 {% block container %}
 <form action="{% url 'history:search' %}" method="get">
 	<div class="row">
-	 	<div class="col-md-12">
-	    	<div class="input-group">
+	 	<div class="col-md-offset-4 col-md-4">
+	    	<div class="input-group input-group-lg">
 		    	<input type="text" name="q" id="q" value="{{ q }}" class="form-control" placeholder="Search for..."/>
 		    	<span class="input-group-btn">
 					<button class="btn btn-primary" type="submit">Search</button>
 				</span>
 			</div><!-- /input-group -->
-	  	</div><!-- /.col-lg-12 -->
+	  	</div><!-- /.col-md-4 -->
 	</div><!-- /.row -->
 </form>
 <br>

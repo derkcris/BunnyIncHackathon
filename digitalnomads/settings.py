@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 # Constants
 SERVICE_FEE = 0.20
+SHOPPING_CART_KEY = 'shopping_cart'
 
 # Application definition
 
