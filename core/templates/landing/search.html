@@ -1,0 +1,72 @@
+{% extends "template/base.html" %}
+
+{% block title %}Search a history{% endblock %}
+
+{% block container %}
+<form action="{% url 'history:search' %}" method="get">
+	<div class="row">
+	 	<div class="col-md-12">
+	    	<div class="input-group">
+		    	<input type="text" name="q" id="q" value="{{ q }}" class="form-control" placeholder="Search for..."/>
+		    	<span class="input-group-btn">
+					<button class="btn btn-primary" type="submit">Search</button>
+				</span>
+			</div><!-- /input-group -->
+	  	</div><!-- /.col-lg-12 -->
+	</div><!-- /.row -->
+</form>
+<br>
+{% if histories %}
+	{% for history in histories %}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ history.start.day }}</span>
+									<p class="small">{{ history.start | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4 text-center">
+								<span class="lead">{{ history.name }}</span>
+							</div>
+							<div class="col-md-1 text-center">
+								<div class="text-primary">
+									<span class="lead">{{ history.end.day }}</span>
+									<p class="small">{{ history.end | date:"b" }}</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								{% for event in history.event_set.all %}
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<a href="/history/search/?q={{ event.place.name }}">{{ event.place.name }}</a>
+											(<i><a href="/history/search/?q={{ event.place.location }}">{{ event.place.location }}</a></i>)
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+							<div class="col-md-2">
+								<a class="btn btn-default" href="#" role="button">View more</a>
+							</div>
+						</div>
+  					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+{% if q and not histories %}
+	<div class="alert" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		No results
+	</div>
+{% endif %}
+
+Filters: {{ filters }}
+<br>
+Query: {{ query }}
+
+{% endblock %}

@@ -35,6 +35,9 @@ class Place(models.Model):
     location = models.CharField(max_length=50)
     created = models.DateTimeField()
 
+    def histories(self):
+    	return History.objects.filter(event__place__id = self.id)
+
     def __str__(self):
     	return self.name
 
@@ -66,6 +69,16 @@ class History(models.Model):
     sumary = models.TextField()
     created = models.DateTimeField()
 
+    def start(self):
+    	result = self.event_set.all().order_by('start')[:1]
+    	if result:
+    		return result[0].created
+
+    def end(self):
+    	result = self.event_set.all().order_by('-end')[:1]
+    	if result:
+    		return result[0].end
+
     def __str__(self):
     	return self.name
 
@@ -78,5 +91,5 @@ class Event(models.Model):
     end = models.DateField()
 
     def __str__(self):
-    	return self.history + ' - ' + self.place
+    	return str(self.history) + ' - ' + str(self.place)
 
