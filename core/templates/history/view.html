@@ -41,13 +41,17 @@
 							<div class="col-md-2 text-center">
 								<span class="small">{{ event.place.currency }}</span>
 								<span class="lead">{{ event.place.price }}</span>
-								<a class="btn btn-success" href="#" role="button">
+								<button class="btn btn-success dn-book" role="button"
+									data-place-id="{{ event.place.id }}"
+									data-place-name="{{ event.place.name }}"
+									data-place-price="{{ event.place.price }}"
+									data-place-currency="{{ event.place.currency }}">
 									{% if user and user.id = history.client.user.id %}
 										Book again this place
 									{% else %}
 										Book this place
 									{% endif %}
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -62,4 +66,58 @@
 		</p>
 		<footer>By <a href="/user/{{ history.client.id }}">{{ history.client }}</a></footer>
 	</blockquote>
+
+	<div class="modal fade" id="dn-add-place-modal" tabindex="-1" role="dialog" aria-labelledby="dn-add-place-modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title">Book a place</h4>
+				</div>
+				<div class="modal-body">
+					<div class="dn-form-container">
+						<form action="{% url 'history:ajax_add_place' %}" method="post" class="form-horizontal dn-form-add-place">
+							{% csrf_token %}
+							<div class="form-group">
+							    <label for="place" class="col-sm-4 control-label">Place</label>
+							    <div class="col-sm-8">
+									<input type="text" class="form-control dn-place-name" name="place_name" value="" disabled>
+									<input type="hidden" class="dn-place-id" name="place" value="">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="start" class="col-sm-4 control-label">Start</label>
+							    <div class="col-sm-8">
+									<input type="text" class="form-control dn-event-start" name="start" value="">
+								</div>
+							</div>
+							<div class="form-group">
+							    <label for="days" class="col-sm-4 control-label">Days</label>
+							    <div class="col-sm-8">
+									<input type="text" class="form-control dn-event-days integer" name="days" value="">
+								</div>
+							</div>
+							<div class="form-group">
+							    <label for="event_price" class="col-sm-4 control-label">Price</label>
+							    <div class="col-sm-8">
+									<input type="text" class="form-control dn-event-price" name="event_price" value="" disabled>
+									<input type="hidden" class="dn-base-price" name="base_price">
+							    </div>
+							</div>
+						</form>
+					</div>
+					<div class="alert alert-success dn-success hide" role="alert">
+						The place was added to your shopping cart!
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success dn-form-submit">Add place</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="/static/css/jquery-ui.css">
+	<script src="/static/js/vendor/jquery-ui.js"></script>
+	<script src="/static/js/core.history.view.js"></script>
 {% endblock %}

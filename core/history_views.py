@@ -2,7 +2,7 @@ import operator
 from itertools import chain
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 
 from . import views
@@ -57,3 +57,24 @@ def view(request, history_id):
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
 	return render(request, 'history/view.html', context)
+
+def ajax_add_place(request):
+	context = {}
+	if request.POST:
+		cart = []
+		event = {
+			'place'		: request.POST['place'],
+			'days'		: request.POST['days'],
+			'start'		: request.POST['start']
+		}
+		# Add shopping card, if not exist
+		if settings.SHOPPING_CART_KEY in request.session:
+			cart = request.session[settings.SHOPPING_CART_KEY]
+
+		cart.append(event)
+		request.session[settings.SHOPPING_CART_KEY] = cart
+		context['status'] = 'success'
+		context['cart'] = cart # TODO remove
+
+	return JsonResponse(context)
+
