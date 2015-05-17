@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^dashboard/', include('core.dashboard_urls', namespace='dashboard')),
     url(r'^story/', include('core.story_urls', namespace='story')),
     url(r'^event/', include('core.event_urls', namespace='event')),
-	url(r'^card/', include('core.card_urls', namespace='card')),
+    url(r'^card/', include('core.card_urls', namespace='card')),
     url(r'^admin/', include(admin.site.urls)),
 ]

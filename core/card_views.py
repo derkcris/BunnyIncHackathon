@@ -40,11 +40,13 @@ def add(request, model, model_id):
 	}
 	return render(request, 'card/add.html', context)
 
+
 def loadObject(model, model_id):
 	if model == 'place':
 		return Place.objects.get(pk=model_id)
 	if model == 'event':
 		return Event.objects.get(pk=model_id)
+
 
 def supportedTypes():
 	types = [{
@@ -76,6 +78,7 @@ def supportedTypes():
 	]
 	return types
 
+
 def generateContent(type):
 	if type == 'link':
 		return '<a href="http://runway.is/" class="btn btn-default">runway.is</a>'
@@ -86,4 +89,4 @@ def generateContent(type):
 	if type == 'instagram':
 		return '<img src="https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-15/11256822_1418709128449920_1504567737_n.jpg" width="100%">'
 	if type == 'facebook':
-		return '<iframe src="https://www.google.com/maps/place/Golden+Gate+Park/@37.769421,-122.486214,17z/data=!3m1!4b1!4m2!3m1!1s0x808587726045f763:0x71be8b68ef3ba730"></iframe>'
+		return '<img src="http://img.svbtle.com/pugis6oroxzxcg.png" width="100%">'

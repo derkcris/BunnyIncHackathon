@@ -62,8 +62,10 @@ def view(request, story_id):
 	return render(request, 'story/view.html', context)
 
 
-@login_required
 def checkout(request):
+	if not request.user.is_authenticated():
+		return redirect('/user/login/')
+
 	name = ''
 	sumary = ''
 	error_message = False
