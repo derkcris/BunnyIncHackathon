@@ -5,4 +5,4 @@ from core.models import Event
 
 def view(request, event_id):
 	event = Event.objects.get(pk=int(event_id))
-	return redirect('/history/' + str(event.history.id))
+	return redirect('/story/' + str(event.story.id))

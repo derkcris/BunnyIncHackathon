@@ -43,16 +43,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='History',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
-                ('sumary', models.TextField()),
-                ('created', models.DateTimeField()),
-                ('client', models.ForeignKey(to='core.Client')),
-            ],
-        ),
-        migrations.CreateModel(
             name='Option',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -88,6 +78,16 @@ class Migration(migrations.Migration):
                 ('owner', models.ForeignKey(to='core.Owner')),
             ],
         ),
+        migrations.CreateModel(
+            name='Story',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100)),
+                ('sumary', models.TextField()),
+                ('created', models.DateTimeField()),
+                ('client', models.ForeignKey(to='core.Client')),
+            ],
+        ),
         migrations.AddField(
             model_name='optionplace',
             name='place',
@@ -95,12 +95,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='event',
-            name='history',
-            field=models.ForeignKey(to='core.History'),
+            name='place',
+            field=models.ForeignKey(to='core.Place'),
         ),
         migrations.AddField(
             model_name='event',
-            name='place',
-            field=models.ForeignKey(to='core.Place'),
+            name='story',
+            field=models.ForeignKey(to='core.Story'),
         ),
     ]

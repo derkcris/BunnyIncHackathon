@@ -41,8 +41,8 @@ class Place(models.Model):
     		model_id = self.id
     	)
 
-    def histories(self):
-    	return History.objects.filter(event__place__id = self.id)
+    def stories(self):
+    	return Story.objects.filter(event__place__id = self.id)
 
     def price(self):
     	return float(self.price_base) + float(self.price_base) * settings.SERVICE_FEE
@@ -72,7 +72,7 @@ class Card(models.Model):
     	return self.name + ' (' + self.model + ')'
 
 
-class History(models.Model):
+class Story(models.Model):
     client = models.ForeignKey(Client)
     name = models.CharField(max_length=100)
     sumary = models.TextField()
@@ -93,7 +93,7 @@ class History(models.Model):
 
 # TODO find a better name
 class Event(models.Model):
-    history = models.ForeignKey(History)
+    story = models.ForeignKey(Story)
     place = models.ForeignKey(Place)
     created = models.DateTimeField()
     start = models.DateField()
@@ -106,5 +106,5 @@ class Event(models.Model):
     	)
 
     def __str__(self):
-    	return str(self.place) + ' (' + str(self.history) + ')'
+    	return str(self.place) + ' (' + str(self.story) + ')'
 

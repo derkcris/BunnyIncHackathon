@@ -1,5 +1,5 @@
 /*
- * Domain: core.history.view
+ * Domain: core.story.view
  */
 
 function showModalHandler(event){
@@ -60,7 +60,7 @@ function submitHandler(event){
 		'days'					: $('.dn-event-days').val()
 	};
 	$.ajax({
-		url : '/history/ajax_add_place/',
+		url : '/story/ajax_add_place/',
 		type : 'post',
 		cache : false,
 		data : data,

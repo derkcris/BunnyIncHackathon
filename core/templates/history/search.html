@@ -1,11 +1,11 @@
 {% extends "template/base.html" %}
 
 {% block title %}
-	Search a history
+	Search a story
 {% endblock %}
 
 {% block container %}
-<form action="{% url 'history:search' %}" method="get">
+<form action="{% url 'story:search' %}" method="get">
 	<div class="row">
 	 	<div class="col-md-offset-4 col-md-4">
 	    	<div class="input-group input-group-lg">
@@ -18,8 +18,8 @@
 	</div><!-- /.row -->
 </form>
 <br>
-{% if histories %}
-	{% for history in histories %}
+{% if stories %}
+	{% for story in stories %}
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -27,35 +27,35 @@
 						<div class="row">
 							<div class="col-md-1 text-center">
 								<div class="text-primary">
-									<span class="lead">{{ history.start.day }}</span>
-									<p class="small">{{ history.start | date:"b" }}</p>
+									<span class="lead">{{ story.start.day }}</span>
+									<p class="small">{{ story.start | date:"b" }}</p>
 								</div>
 							</div>
 							<div class="col-md-4 text-center">
-								<span class="lead">{{ history.name }}</span>
+								<span class="lead">{{ story.name }}</span>
 								<p class="small">
-									<a href="/user/{{ history.client.id }}">{{ history.client }}</a>
+									<a href="/user/{{ story.client.id }}">{{ story.client }}</a>
 								</p>
 							</div>
 							<div class="col-md-1 text-center">
 								<div class="text-primary">
-									<span class="lead">{{ history.end.day }}</span>
-									<p class="small">{{ history.end | date:"b" }}</p>
+									<span class="lead">{{ story.end.day }}</span>
+									<p class="small">{{ story.end | date:"b" }}</p>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="panel panel-default">
 									<div class="panel-body">
 										<strong>Places: </strong>
-										{% for event in history.event_set.all %}
-											<a href="/history/search/?q={{ event.place.name }}">{{ event.place.name }}</a>
-											(<i><a href="/history/search/?q={{ event.place.location }}">{{ event.place.location }}</a></i>)
+										{% for event in story.event_set.all %}
+											<a href="/story/search/?q={{ event.place.name }}">{{ event.place.name }}</a>
+											(<i><a href="/story/search/?q={{ event.place.location }}">{{ event.place.location }}</a></i>)
 										{% endfor %}
 									</div>
 								</div>
 							</div>
 							<div class="col-md-2 text-center">
-								<a class="btn btn-success" href="/history/{{ history.id }}" role="button">View more</a>
+								<a class="btn btn-success" href="/story/{{ story.id }}" role="button">View more</a>
 							</div>
 						</div>
   					</div>
@@ -64,7 +64,7 @@
 		</div>
 	{% endfor %}
 {% endif %}
-{% if q and not histories %}
+{% if q and not stories %}
 	<div class="alert" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		No results

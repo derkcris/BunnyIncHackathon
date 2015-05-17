@@ -14,13 +14,65 @@
     email: luis.gonzalez@example.com
     first_name: Luis
     last_name: Gonzalez
+- model: auth.User
+  pk: 4
+  fields:
+    username: cliente1
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: cliente1@example.com
+    first_name: NombreCliente1
+    last_name: Apellido1
+- model: auth.User
+  pk: 5
+  fields:
+    username: cliente2
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: cliente2@example.com
+    first_name: NombreCliente2
+    last_name: Apellido2
+- model: auth.User
+  pk: 6
+  fields:
+    username: duenio1
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: duenio1@example.com
+    first_name: NombreDuenio1
+    last_name: Apellido1
+- model: auth.User
+  pk: 7
+  fields:
+    username: duenio2
+    password: pbkdf2_sha256$20000$M4rKAaq97RvV$re+QgjPwbvNlrlpE7vJa6MOYxo7TNQ+ls9k126hJ11c=
+    email: duenio2@example.com
+    first_name: NombreDuenio2
+    last_name: Apellido2
 - model: core.Client
   pk: 1
   fields:
     user: 2
     created: 2015-06-16 00:00:00
+- model: core.Client
+  pk: 2
+  fields:
+    user: 4
+    created: 2015-06-16 00:00:00
+- model: core.Client
+  pk: 3
+  fields:
+    user: 5
+    created: 2015-06-16 00:00:00
 - model: core.Owner
   pk: 1
   fields:
     user: 3
+    created: 2015-06-16 00:00:00
+- model: core.Owner
+  pk: 2
+  fields:
+    user: 6
+    created: 2015-06-16 00:00:00
+- model: core.Owner
+  pk: 3
+  fields:
+    user: 7
     created: 2015-06-16 00:00:00

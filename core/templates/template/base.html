@@ -43,11 +43,11 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <div class="navbar-form navbar-right">
+                        <a class="btn btn-default" href="/story/search" role="button">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            Search
+                        </a>
                         {% if user %}
-                            <a class="btn btn-default" href="/history/search" role="button">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                Search
-                            </a>
                             <a class="btn btn-default" href="/dashboard" role="button">
                                 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                                 Dashboard
@@ -55,7 +55,7 @@
                         {% endif %}
                         {% if shopping_cart %}
                             <div class="btn-group">
-                                <a class="btn btn-success" href="/history/checkout" role="button">
+                                <a class="btn btn-success" href="/story/checkout" role="button">
                                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                                     Checkout <span class="badge dn-cart-length">{{ shopping_cart | length }}</span>
                                 </a>

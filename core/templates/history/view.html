@@ -1,15 +1,15 @@
 {% extends "template/base.html" %}
 
 {% block title %}
-	{{ history.name }}
+	{{ story.name }}
 {% endblock %}
 
 {% block title_section %}
-	<span>By <a href="/user/{{ history.client.id }}">{{ history.client }}</a></span>
+	<span>By <a href="/user/{{ story.client.id }}">{{ story.client }}</a></span>
 {% endblock %}
 
 {% block container %}
-	{% for event in history.event_set.all %}
+	{% for event in story.event_set.all %}
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -24,7 +24,7 @@
 							<div class="col-md-4 text-center">
 								<span class="lead">{{ event.place.name }}</span>
 								<p class="small">
-									<a href="/history/search?q={{ event.place.location }}">{{ event.place.location }}</a>
+									<a href="/story/search?q={{ event.place.location }}">{{ event.place.location }}</a>
 								</p>
 							</div>
 							<div class="col-md-1 text-center">
@@ -46,7 +46,7 @@
 									data-place-name="{{ event.place.name }}"
 									data-place-price="{{ event.place.price }}"
 									data-place-currency="{{ event.place.currency }}">
-									{% if user and user.id = history.client.user.id %}
+									{% if user and user.id = story.client.user.id %}
 										Book again this place
 									{% else %}
 										Book this place
@@ -73,7 +73,7 @@
 								{% endif %}
 							</div>
 						</div>
-						{% if user and user.id = history.client.user.id %}
+						{% if user and user.id = story.client.user.id %}
 							<div class="row">
 								<div class="col-md-12">
 									<div class="text-center">
@@ -92,10 +92,10 @@
 	{% endfor %}
 	<blockquote class="blockquote-reverse">
 		<p>
-			<b>{{ history.name }} : </b>
-			<i>{{ history.sumary }}</i>
+			<b>{{ story.name }} : </b>
+			<i>{{ story.sumary }}</i>
 		</p>
-		<footer>By <a href="/user/{{ history.client.id }}">{{ history.client }}</a></footer>
+		<footer>By <a href="/user/{{ story.client.id }}">{{ story.client }}</a></footer>
 	</blockquote>
 
 	<div class="modal fade" id="dn-add-place-modal" tabindex="-1" role="dialog" aria-labelledby="dn-add-place-modal" aria-hidden="true">
@@ -107,7 +107,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="dn-form-container">
-						<form action="{% url 'history:ajax_add_place' %}" method="post" class="form-horizontal dn-form-add-place">
+						<form action="{% url 'story:ajax_add_place' %}" method="post" class="form-horizontal dn-form-add-place">
 							{% csrf_token %}
 							<div class="form-group">
 							    <label for="place" class="col-sm-4 control-label">Place</label>
@@ -150,5 +150,5 @@
 	</div>
 	<link rel="stylesheet" href="/static/css/jquery-ui.css">
 	<script src="/static/js/vendor/jquery-ui.js"></script>
-	<script src="/static/js/core.history.view.js"></script>
+	<script src="/static/js/core.story.view.js"></script>
 {% endblock %}

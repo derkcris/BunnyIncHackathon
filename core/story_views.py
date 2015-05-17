@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 
 from . import views
-from core.models import Option, Place, OptionPlace, Card, History, Event, Client
+from core.models import Option, Place, OptionPlace, Card, Story, Event, Client
 
 def search(request):
 	q = request.GET.get('q', '')
@@ -20,7 +20,7 @@ def search(request):
 			Q(name__icontains = f) | Q(sumary__icontains = f) for f in filters)
 		)
 		query_log = str(query)
-		histories = History.objects.filter(query).order_by('-created')
+		histories = Story.objects.filter(query).order_by('-created')
 
 		# Places
 		query = reduce(operator.or_, (
@@ -49,17 +49,17 @@ def search(request):
 		'user'			: views.user_status(request),
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
-	return render(request, 'history/search.html', context)
+	return render(request, 'story/search.html', context)
 
 
-def view(request, history_id):
-	history = get_object_or_404(History, pk=history_id)
+def view(request, story_id):
+	story = get_object_or_404(Story, pk=story_id)
 	context = {
-		'history' 		: history,
+		'story' 		: story,
 		'user'			: views.user_status(request),
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
-	return render(request, 'history/view.html', context)
+	return render(request, 'story/view.html', context)
 
 
 @login_required
@@ -82,19 +82,19 @@ def checkout(request):
 			else:
 				client = Client(user=request.user, created=timezone.now())
 				client.save()
-			# Create history and events
-			history = History(
+			# Create story and events
+			story = Story(
 				client = client,
 				name = name,
 				sumary = sumary,
 				created = timezone.now()
 			)
-			history.save()
+			story.save()
 			for ev in cart:
 				place = Place.objects.get(pk=ev['place'])
 				ev = complete_event(ev, place)
 				event = Event(
-					history = history,
+					story = story,
 					place = place,
 					created = timezone.now(),
 					start = ev['start'],
@@ -102,7 +102,7 @@ def checkout(request):
 				)
 				event.save()
 			del request.session[settings.SHOPPING_CART_KEY]
-			return redirect('/history/' + str(history.id))
+			return redirect('/story/' + str(story.id))
 
 		else:
 			error_message = 'Some fields are required.'
@@ -127,7 +127,7 @@ def checkout(request):
 		'user'			: views.user_status(request),
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
-	return render(request, 'history/checkout.html', context)
+	return render(request, 'story/checkout.html', context)
 
 
 
@@ -139,7 +139,7 @@ def checkout_remove(request, index):
 		cart.remove( cart[index] )
 		request.session[settings.SHOPPING_CART_KEY] = cart
 
-	return redirect('/history/checkout')
+	return redirect('/story/checkout')
 
 
 def ajax_add_place(request):

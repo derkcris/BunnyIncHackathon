@@ -1,0 +1,100 @@
+- model: core.Story
+  pk: 1
+  fields:
+    client: 1
+    name: Travesia por Colombia
+    sumary: Viaje a traves de la capital colombia en los espacios de trabajo mas famosos
+    created: 2015-06-16 00:00:00
+- model: core.Story
+  pk: 2
+  fields:
+    client: 2
+    name: Mi primer viaje a Estados Unidos
+    sumary: Un recorrido por la ciudad de San Francisco y Sillicon Valley
+    created: 2015-06-16 00:00:00
+- model: core.Story
+  pk: 3
+  fields:
+    client: 3
+    name: Asia 2015
+    sumary: Recorrido por Asia oriental y algunos paises de USA
+    created: 2015-06-16 00:00:00
+- model: core.Story
+  pk: 4
+  fields:
+    client: 1
+    name: America de Sur a Norte
+    sumary: Travesia por africa central
+    created: 2015-06-16 00:00:00
+- model: core.Event
+  pk: 1
+  fields:
+    story: 1
+    place: 5
+    created: 2015-06-16 00:00:00
+    start: 2015-01-03
+    end: 2015-01-19
+- model: core.Event
+  pk: 2
+  fields:
+    story: 1
+    place: 6
+    created: 2015-06-16 00:00:00
+    start: 2015-01-21
+    end: 2015-01-28
+- model: core.Event
+  pk: 3
+  fields:
+    story: 1
+    place: 7
+    created: 2015-06-16 00:00:00
+    start: 2015-01-29
+    end: 2015-02-05
+- model: core.Event
+  pk: 4
+  fields:
+    story: 2
+    place: 1
+    created: 2015-06-16 00:00:00
+    start: 2015-05-15
+    end: 2015-05-20
+- model: core.Event
+  pk: 5
+  fields:
+    story: 2
+    place: 2
+    created: 2015-06-16 00:00:00
+    start: 2015-05-21
+    end: 2015-06-2
+- model: core.Event
+  pk: 6
+  fields:
+    story: 2
+    place: 3
+    created: 2015-06-16 00:00:00
+    start: 2015-06-5
+    end: 2015-06-21
+- model: core.Event
+  pk: 7
+  fields:
+    story: 3
+    place: 1
+    created: 2015-06-16 00:00:00
+    start: 2015-04-13
+    end: 2015-04-17
+- model: core.Event
+  pk: 8
+  fields:
+    story: 3
+    place: 4
+    created: 2015-06-16 00:00:00
+    start: 2015-04-19
+    end: 2015-04-29
+- model: core.Event
+  pk: 9
+  fields:
+    story: 3
+    place: 1
+    created: 2015-06-16 00:00:00
+    start: 2015-05-1
+    end: 2015-05-15

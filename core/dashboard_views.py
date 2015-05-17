@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from . import views
-from core.models import Client, Owner, History
+from core.models import Client, Owner, Story
 
 @login_required
 def dashboard(request):
@@ -19,9 +19,9 @@ def dashboard(request):
 	return redirect('/admin')
 
 def dashboard_client(request, client):
-	histories = History.objects.filter(client_id = client.id).order_by('-created')
+	stories = Story.objects.filter(client_id = client.id).order_by('-created')
 	context = {
-		'histories'		: histories,
+		'stories'		: stories,
 		'user'			: views.user_status(request),
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
