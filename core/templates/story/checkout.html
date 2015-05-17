@@ -1,7 +1,7 @@
 {% extends "template/base.html" %}
 
 {% block title %}
-	Checkout
+	Awesome! Confirm your trip
 {% endblock %}
 
 {% block container %}
@@ -74,10 +74,16 @@
 							</div>
 							<div class="form-group">
 							    <label for="total" class="col-sm-2 control-label">Total :</label>
-							    <div class="col-sm-offset-7 col-sm-2 text-center">
-							    	<span class="small"><b>{{ currency }}</b></span>
-									<span class="lead"><b>{{ total }}</b></span>
-							    </div>
+							    <div class="col-sm-9">
+							    	<div class="panel panel-default">
+										<div class="panel-body">
+							    			<div class="col-sm-offset-10 col-sm-2 text-center">
+										    	<span class="small"><b>{{ currency }}</b></span>
+												<span class="lead"><b>{{ total }}</b></span>
+								    		</div>
+								    	</div>
+								    </div>
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-9 col-sm-2 text-center">
