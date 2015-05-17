@@ -35,6 +35,12 @@ class Place(models.Model):
     location = models.CharField(max_length=50)
     created = models.DateTimeField()
 
+    def cards(self):
+    	return Card.objects.filter(
+    		model = 'place',
+    		model_id = self.id
+    	)
+
     def histories(self):
     	return History.objects.filter(event__place__id = self.id)
 
@@ -63,7 +69,7 @@ class Card(models.Model):
     content = models.TextField()
 
     def __str__(self):
-    	return self.type + ' - ' + self.name
+    	return self.name + ' (' + self.model + ')'
 
 
 class History(models.Model):
@@ -93,6 +99,12 @@ class Event(models.Model):
     start = models.DateField()
     end = models.DateField()
 
+    def cards(self):
+    	return Card.objects.filter(
+    		model = 'event',
+    		model_id = self.id
+    	)
+
     def __str__(self):
-    	return str(self.history) + ' - ' + str(self.place)
+    	return str(self.place) + ' (' + str(self.history) + ')'
 

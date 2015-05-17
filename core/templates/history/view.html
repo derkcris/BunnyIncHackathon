@@ -54,10 +54,41 @@
 								</button>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12">
+								{% if event.cards %}
+									{% for card in event.cards %}
+										<div class="pull-left col-md-3">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													{{ card.content | safe }}
+													<br>
+													<span class="small">{{ card.created }}</span>
+												</div>
+												<div class="panel-footer text-center">{{ card.name }}</div>
+											</div>
+										</div>
+									{% endfor %}
+								{% endif %}
+							</div>
+						</div>
+						{% if user and user.id = history.client.user.id %}
+							<div class="row">
+								<div class="col-md-12">
+									<div class="text-center">
+										<a href="/card/add/event/{{ event.id }}" role="button">
+		                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+		                                    Add new card
+		                                </a>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					</div><!--/.panel-body -->
+				</div><!--/.panel -->
+			</div><!--/.col-md-12 -->
+		</div><!--/.row -->
 	{% endfor %}
 	<blockquote class="blockquote-reverse">
 		<p>

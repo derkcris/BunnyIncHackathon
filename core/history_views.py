@@ -11,7 +11,6 @@ from django.utils import timezone
 from . import views
 from core.models import Option, Place, OptionPlace, Card, History, Event, Client
 
-
 def search(request):
 	q = request.GET.get('q', '')
 	if q:
@@ -61,6 +60,7 @@ def view(request, history_id):
 		'shopping_cart'	: views.shopping_cart_status(request)
 	}
 	return render(request, 'history/view.html', context)
+
 
 @login_required
 def checkout(request):
@@ -125,17 +125,6 @@ def checkout(request):
 	return render(request, 'history/checkout.html', context)
 
 
-def complete_event(ev, place):
-	ev['days'] = int(ev['days'])
-	ev['start'] = date_object = datetime.strptime(ev['start'], '%m/%d/%Y') # 12/31/2015
-	ev['end'] = ev['start'] + timedelta(days=ev['days'])
-	ev['place_name'] = place.name
-	ev['location'] = place.location
-	ev['price_base'] = float(place.price_base)
-	ev['price'] = place.price() * ev['days']
-	ev['currency'] = place.currency
-	return ev
-
 
 @login_required
 def checkout_remove(request, index):
@@ -164,7 +153,17 @@ def ajax_add_place(request):
 		cart.append(event)
 		request.session[settings.SHOPPING_CART_KEY] = cart
 		context['status'] = 'success'
-		context['length'] = len(cart) # TODO remove
-
+		context['length'] = len(cart)
 	return JsonResponse(context)
 
+
+def complete_event(ev, place):
+	ev['days'] = int(ev['days'])
+	ev['start'] = date_object = datetime.strptime(ev['start'], '%m/%d/%Y') # 12/31/2015
+	ev['end'] = ev['start'] + timedelta(days=ev['days'])
+	ev['place_name'] = place.name
+	ev['location'] = place.location
+	ev['price_base'] = float(place.price_base)
+	ev['price'] = place.price() * ev['days']
+	ev['currency'] = place.currency
+	return ev
